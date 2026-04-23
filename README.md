@@ -40,7 +40,7 @@ Run the application:
 
 ```bash
 python pcap.py
-
+```
 Steps:
 1.Launch the application
 2.Click Open PCAP
