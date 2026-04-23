@@ -41,11 +41,14 @@ Run the application:
 ```bash
 python pcap.py
 ```
-Steps:
-1.Launch the application
-2.Click Open PCAP
-3.Select a .pcap or .cap file
-4.The tool processes the file
-5.A browser window opens showing the network visualization
+
+---
+## Steps
+
+1. Launch the application  
+2. Click **Open PCAP**  
+3. Select a `.pcap` or `.cap` file  
+4. The tool processes the file  
+5. A browser window opens showing the network visualization  
 
 
