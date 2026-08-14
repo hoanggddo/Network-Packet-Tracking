@@ -9,9 +9,7 @@ from PyQt5.QtWidgets import (
     QFileDialog, QVBoxLayout, QWidget, QLabel
 )
 
-# -----------------------------
 # GEOIP 
-# -----------------------------
 try:
     import geoip2.database
     MMDB_PATH = os.path.join("data", "GeoLite2-City.mmdb")
@@ -39,9 +37,7 @@ def ip_to_geo(ip):
         return None
 
 
-# -----------------------------
 # PCAP PARSER 
-# -----------------------------
 def parse_pcap(file):
     nodes = {}
     links = []
@@ -76,9 +72,7 @@ def parse_pcap(file):
     return nodes, links
 
 
-# -----------------------------
 # BUILD MAP
-# -----------------------------
 def build_html(nodes, links):
     import json
 
@@ -91,9 +85,8 @@ def build_html(nodes, links):
 
     used = {}
 
-    # -----------------------------
+
     # SAFE NODE POSITIONING
-    # -----------------------------
     for ip, geo in nodes.items():
 
         if isinstance(geo, tuple):
@@ -117,9 +110,8 @@ def build_html(nodes, links):
             "lon": used[ip][1]
         })
 
-    # -----------------------------
     # SAFE LINK BUILDING
-    # -----------------------------
+
     seen = set()
 
     for src, dst in links:
@@ -154,9 +146,9 @@ def build_html(nodes, links):
             "d_lon": d_lon
         })
 
-    # -----------------------------
+
     # HTML MAP
-    # -----------------------------
+
     html = f"""
 <!DOCTYPE html>
 <html>
@@ -186,9 +178,9 @@ L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
 var nodes = {json.dumps(node_data)};
 var links = {json.dumps(link_data)};
 
-// -----------------------------
-// DRAW NODES
-// -----------------------------
+
+# DRAW NODES
+
 nodes.forEach(n => {{
     L.circleMarker([n.lat, n.lon], {{
         radius: 5,
@@ -224,9 +216,7 @@ links.forEach(l => {{
     return out
 
 
-# -----------------------------
 # UI
-# -----------------------------
 class App(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -263,9 +253,7 @@ class App(QMainWindow):
         self.label.setText("Done")
 
 
-# -----------------------------
 # RUN
-# -----------------------------
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = App()
