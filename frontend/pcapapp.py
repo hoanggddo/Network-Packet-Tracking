@@ -11,9 +11,7 @@ from PyQt5.QtWidgets import (
 
 import geoip2.database
 
-# -----------------------------
 # GEOIP (local DB)
-# -----------------------------
 try:
     reader = geoip2.database.Reader("GeoLite2-City.mmdb")
 except:
@@ -30,9 +28,7 @@ def ip_to_geo(ip):
         return None
 
 
-# -----------------------------
 # PCAP → KML
-# -----------------------------
 def build_kml(pcap_file, limit=300):
     seen = set()
     placemarks = []
@@ -105,9 +101,7 @@ def build_kml(pcap_file, limit=300):
     return output
 
 
-# -----------------------------
 # UI APP
-# -----------------------------
 class App(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -151,9 +145,7 @@ class App(QMainWindow):
         self.label.setText("Done!")
 
 
-# -----------------------------
 # RUN
-# -----------------------------
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = App()
